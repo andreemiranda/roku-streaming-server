@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte - Roku Streaming Server</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background: #0056b3;
+            color: white;
+        }
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .support-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+            transition: transform 0.3s ease;
+        }
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+        .support-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .faq-section {
+            background: #e8f5e8;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .faq-item {
+            background: white;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover {
+            background: #0056b3;
+        }
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            line-height: 1.6;
+        }
+        .faq-answer.active {
+            display: block;
+        }
+        .troubleshooting {
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .quick-link {
+            padding: 12px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .quick-link:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            color: white;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-online { background: #28a745; }
+        .status-warning { background: #ffc107; }
+        .status-offline { background: #dc3545; }
+        .contact-emergency {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Voltar ao Início</a>
+        
+        <div class="header">
+            <h1>🛠️ Central de Suporte</h1>
+            <p>Ajuda completa para o Roku Streaming Server</p>
+            <div class="quick-links">
+                <a href="#faq" class="quick-link">❓ FAQ</a>
+                <a href="#troubleshooting" class="quick-link">🔧 Troubleshooting</a>
+                <a href="#contact" class="quick-link">📞 Contato</a>
+                <a href="/api-docs" class="quick-link">📚 API Docs</a>
+            </div>
+        </div>
+
+        <div class="support-grid">
+            <div class="support-card">
+                <div class="support-icon">📖</div>
+                <h3>Documentação</h3>
+                <p>Guias completos, exemplos de código e referência da API</p>
+                <ul>
+                    <li><a href="/api-docs">📚 Documentação da API</a></li>
+                    <li><a href="/">🏠 Guia de Início Rápido</a></li>
+                    <li><a href="#setup">⚙️ Configuração do Roku</a></li>
+                    <li><a href="#deploy">🚀 Guia de Deploy</a></li>
+                </ul>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">🔧</div>
+                <h3>Problemas Técnicos</h3>
+                <p>Soluções para os problemas mais comuns</p>
+                <ul>
+                    <li><a href="#cors-issues">🌐 Problemas de CORS</a></li>
+                    <li><a href="#video-not-loading">📹 Vídeo não carrega</a></li>
+                    <li><a href="#network-issues">🔌 Problemas de rede</a></li>
+                    <li><a href="#roku-connection">📺 Roku não conecta</a></li>
+                </ul>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">💬</div>
+                <h3>Comunidade</h3>
+                <p>Conecte-se com outros desenvolvedores</p>
+                <ul>
+                    <li><a href="https://github.com/seu-usuario/roku-streaming">🐙 GitHub Issues</a></li>
+                    <li><a href="https://discord.gg/roku-dev">💬 Discord</a></li>
+                    <li><a href="https://stackoverflow.com/questions/tagged/roku">📚 Stack Overflow</a></li>
+                    <li><a href="/contact">📧 Contato Direto</a></li>
+                </ul>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">📊</div>
+                <h3>Status do Sistema</h3>
+                <p>Verifique o status dos serviços</p>
+                <ul>
+                    <li><span class="status-indicator status-online"></span>API Principal</li>
+                    <li><span class="status-indicator status-online"></span>Streaming Service</li>
+                    <li><span class="status-indicator status-online"></span>Health Checks</li>
+                    <li><span class="status-indicator status-online"></span>Documentação</li>
+                </ul>
+                <p><a href="/health">🔍 Verificar Status Detalhado</a></p>
+            </div>
+        </div>
+
+        <div class="faq-section" id="faq">
+            <h3>❓ Perguntas Frequentes (FAQ)</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Como configurar o Roku para usar meu servidor?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Para configurar o Roku:</p>
+                    <ol>
+                        <li>Obtenha a URL do seu servidor (ex: <code>http://192.168.1.100:3111/streaming</code>)</li>
+                        <li>Edite o arquivo <code>components/MainScene.brs</code> no seu canal Roku</li>
+                        <li>Substitua a URL na função <code>loadStreamingPage()</code></li>
+                        <li>Faça sideload do canal no seu Roku</li>
+                    </ol>
+                    <div class="code-block">
+sub loadStreamingPage()
+    streamingUrl = "http://SEU_IP:3111/streaming"
+    m.webView.url = streamingUrl
+end sub
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Por que o vídeo não está carregando?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Possíveis causas e soluções:</p>
+                    <ul>
+                        <li><strong>Problema de rede:</strong> Verifique se o Roku consegue acessar o servidor</li>
+                        <li><strong>URL incorreta:</strong> Confirme se a URL está correta no código do Roku</li>
+                        <li><strong>CORS:</strong> O servidor já tem CORS habilitado, mas verifique se não há proxy bloqueando</li>
+                        <li><strong>Firewall:</strong> Certifique-se de que a porta 3111 está aberta</li>
+                    </ul>
+                    <p>Para testar, acesse <code>http://SEU_IP:3111/streaming</code> no navegador primeiro.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Como descobrir o IP do meu servidor?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Várias maneiras de descobrir:</p>
+                    <ul>
+                        <li><strong>Página inicial:</strong> Acesse <code>http://localhost:3111</code> - mostra todos os IPs</li>
+                        <li><strong>Health check:</strong> <code>http://localhost:3111/health</code></li>
+                        <li><strong>Network info:</strong> <code>http://localhost:3111/network-info</code></li>
+                        <li><strong>Console:</strong> O servidor mostra os IPs ao iniciar</li>
+                    </ul>
+                    <p>O servidor detecta automaticamente todas as interfaces de rede disponíveis.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Como fazer deploy em produção?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Opções de deploy recomendadas:</p>
+                    <ul>
+                        <li><strong>Render.com:</strong> Deploy gratuito automático via GitHub</li>
+                        <li><strong>Heroku:</strong> Plataforma robusta com CLI</li>
+                        <li><strong>Railway:</strong> Deploy simplificado</li>
+                        <li><strong>Vercel:</strong> Para aplicações serverless</li>
+                    </ul>
+                    <p>Todos os provedores têm configuração automática via <code>package.json</code>.</p>
+                    <p><strong>Importante:</strong> Em produção, use HTTPS e configure domínio personalizado.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Como adicionar meus próprios vídeos?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Para adicionar vídeos personalizados:</p>
+                    <ol>
+                        <li>Edite o arquivo <code>server/index.js</code></li>
+                        <li>Localize o endpoint <code>/api/videos</code></li>
+                        <li>Substitua as URLs pelos seus vídeos</li>
+                        <li>Certifique-se de que os vídeos são acessíveis via HTTPS</li>
+                    </ol>
+                    <div class="code-block">
+{
+  "id": 1,
+  "title": "Meu Vídeo",
+  "url": "https://meusite.com/video.mp4",
+  "thumbnail": "https://meusite.com/thumb.jpg",
+  "duration": "10:30",
+  "description": "Descrição do vídeo",
+  "genre": "Categoria",
+  "year": 2024
+}
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    O servidor é seguro para produção?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sim, o servidor inclui várias medidas de segurança:</p>
+                    <ul>
+                        <li>✅ <strong>HTTPS obrigatório</strong> em produção</li>
+                        <li>✅ <strong>CORS configurado</strong> adequadamente</li>
+                        <li>✅ <strong>Headers de segurança</strong> implementados</li>
+                        <li>✅ <strong>Error handling</strong> robusto</li>
+                        <li>✅ <strong>Logs de segurança</strong> para monitoramento</li>
+                    </ul>
+                    <p>Para máxima segurança, considere adicionar autenticação e rate limiting.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="troubleshooting" id="troubleshooting">
+            <h3>🔧 Guia de Troubleshooting</h3>
+            
+            <h4 id="cors-issues">🌐 Problemas de CORS</h4>
+            <p><strong>Sintoma:</strong> Erro "Access to fetch blocked by CORS policy"</p>
+            <p><strong>Solução:</strong> O servidor já tem CORS habilitado. Se ainda há problemas:</p>
+            <div class="code-block">
+// Verificar se o CORS está funcionando
+curl -H "Origin: http://example.com" \
+     -H "Access-Control-Request-Method: GET" \
+     -H "Access-Control-Request-Headers: X-Requested-With" \
+     -X OPTIONS \
+     http://localhost:3111/api/videos
+            </div>
+
+            <h4 id="video-not-loading">📹 Vídeo não carrega</h4>
+            <p><strong>Passos de diagnóstico:</strong></p>
+            <ol>
+                <li>Teste no navegador: <code>http://SEU_IP:3111/streaming</code></li>
+                <li>Verifique a API: <code>http://SEU_IP:3111/api/videos</code></li>
+                <li>Teste conectividade: <code>ping SEU_IP</code></li>
+                <li>Verifique logs do servidor</li>
+            </ol>
+
+            <h4 id="network-issues">🔌 Problemas de rede</h4>
+            <p><strong>Comandos úteis:</strong></p>
+            <div class="code-block">
+# Verificar portas abertas
+netstat -tulpn | grep :3111
+
+# Testar conectividade
+telnet SEU_IP 3111
+
+# Verificar firewall (Linux)
+sudo ufw status
+
+# Verificar interfaces de rede
+ip addr show
+            </div>
+
+            <h4 id="roku-connection">📺 Roku não conecta</h4>
+            <p><strong>Checklist:</strong></p>
+            <ul>
+                <li>✅ Roku e servidor na mesma rede</li>
+                <li>✅ URL correta no código BrightScript</li>
+                <li>✅ Servidor rodando e acessível</li>
+                <li>✅ Porta 3111 aberta no firewall</li>
+                <li>✅ Canal Roku com sideload correto</li>
+            </ul>
+        </div>
+
+        <div class="contact-emergency" id="contact">
+            <h3>🚨 Suporte de Emergência</h3>
+            <p>Para problemas críticos que impedem o funcionamento:</p>
+            <div class="quick-links">
+                <a href="/contact" class="quick-link">📧 Contato Direto</a>
+                <a href="https://github.com/seu-usuario/roku-streaming/issues" class="quick-link">🐙 GitHub Issues</a>
+                <a href="https://discord.gg/roku-dev" class="quick-link">💬 Discord</a>
+            </div>
+            <p><strong>Tempo de resposta:</strong> Bugs críticos em 12-24h | Suporte geral em 2-3 dias</p>
+        </div>
+
+        <div style="background: #f0f8f0; padding: 20px; border-radius: 8px; margin: 30px 0;">
+            <h3>📚 Recursos Adicionais</h3>
+            <div class="quick-links">
+                <a href="/" class="quick-link">🏠 Página Inicial</a>
+                <a href="/api-docs" class="quick-link">📚 API Docs</a>
+                <a href="/about" class="quick-link">ℹ️ Sobre</a>
+                <a href="https://developer.roku.com/docs" class="quick-link">📖 Roku Docs</a>
+                <a href="https://nodejs.org/docs" class="quick-link">🟢 Node.js Docs</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+            <p><strong>🛠️ Central de Suporte - Roku Streaming Server</strong></p>
+            <p>Estamos aqui para ajudar você a ter sucesso com sua aplicação Roku</p>
+            <div style="margin-top: 20px;">
+                <a href="/" class="back-link">🏠 Página Inicial</a>
+                <a href="/contact" class="back-link">📧 Contato</a>
+                <a href="/about" class="back-link">ℹ️ Sobre</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Fechar todas as outras respostas
+                document.querySelectorAll('.faq-answer.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question span').forEach(span => {
+                    span.textContent = '+';
+                });
+                
+                // Abrir a resposta clicada
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Verificar status do servidor
+        async function checkServerStatus() {
+            try {
+                const response = await fetch('/health');
+                if (response.ok) {
+                    console.log('✅ Servidor online');
+                } else {
+                    console.log('⚠️ Servidor com problemas');
+                }
+            } catch (error) {
+                console.log('❌ Servidor offline');
+            }
+        }
+
+        // Verificar status ao carregar a página
+        checkServerStatus();
+    </script>
+</body>
+</html>

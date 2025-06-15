@@ -2,12 +2,14 @@
   "name": "roku-streaming-server",
   "type": "module",
   "version": "1.0.0",
-  "description": "Servidor de streaming HTML para aplicação Roku",
+  "description": "Servidor de streaming HTML para aplicação Roku - Multi-rede",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "echo 'No build step required'"
+    "network": "node -e \"console.log('Interfaces de rede:'); console.log(require('os').networkInterfaces());\"",
+    "build": "echo 'No build step required for this Node.js app'",
+    "test": "echo 'No tests specified' && exit 0"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -20,7 +22,22 @@
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
   },
-  "keywords": ["roku", "streaming", "express", "server"],
-  "author": "",
-  "license": "MIT"
+  "keywords": [
+    "roku",
+    "streaming",
+    "express",
+    "multi-network",
+    "tv",
+    "html5",
+    "render",
+    "deploy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git"
+  },
+  "homepage": "https://github.com/SEU_USUARIO/SEU_REPOSITORIO#readme",
+  "bugs": {
+    "url": "https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues"
+  }
 }

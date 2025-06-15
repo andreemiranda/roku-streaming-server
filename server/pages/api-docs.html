@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação da API - Roku Streaming Server</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background: #0056b3;
+            color: white;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .endpoint-header {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .method {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .method.get { background-color: #28a745; }
+        .method.post { background-color: #ffc107; color: #000; }
+        .method.put { background-color: #17a2b8; }
+        .method.delete { background-color: #dc3545; }
+        .endpoint-body {
+            padding: 20px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .response-example {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .error-example {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .parameter-table th,
+        .parameter-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        .parameter-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        .required {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .optional {
+            color: #6c757d;
+        }
+        .toc {
+            background: #f0f8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+        .toc a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .language-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .language-tab {
+            padding: 8px 16px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .language-tab.active {
+            background: #007bff;
+        }
+        .code-example {
+            display: none;
+        }
+        .code-example.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Voltar ao Início</a>
+        
+        <div class="header">
+            <h1>📚 Documentação da API</h1>
+            <p>Guia completo para integração com o Roku Streaming Server</p>
+        </div>
+
+        <div class="toc">
+            <h3>📋 Índice</h3>
+            <ul>
+                <li><a href="#overview">Visão Geral</a></li>
+                <li><a href="#authentication">Autenticação</a></li>
+                <li><a href="#endpoints">Endpoints</a></li>
+                <li><a href="#videos">Gerenciamento de Vídeos</a></li>
+                <li><a href="#health">Health Check</a></li>
+                <li><a href="#network">Informações de Rede</a></li>
+                <li><a href="#examples">Exemplos de Código</a></li>
+                <li><a href="#errors">Códigos de Erro</a></li>
+            </ul>
+        </div>
+
+        <section id="overview">
+            <h2>🌐 Visão Geral</h2>
+            <p>A API do Roku Streaming Server é uma API RESTful que fornece acesso completo aos recursos de streaming e gerenciamento de vídeos. Todas as respostas são em formato JSON e a API suporta CORS para integração com aplicações web.</p>
+            
+            <div class="code-block">
+Base URL: http://localhost:3111
+Produção: https://seu-app.onrender.com
+Content-Type: application/json
+CORS: Habilitado para todas as origens
+            </div>
+        </section>
+
+        <section id="authentication">
+            <h2>🔐 Autenticação</h2>
+            <p>Atualmente, a API não requer autenticação. Todos os endpoints são públicos e acessíveis sem tokens ou chaves de API.</p>
+            <div class="response-example">
+                <strong>Nota:</strong> Em versões futuras, será implementado sistema de autenticação opcional para ambientes de produção.
+            </div>
+        </section>
+
+        <section id="endpoints">
+            <h2>🛠️ Endpoints Principais</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/</span>
+                    <span>Página inicial com informações do servidor</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Retorna uma página HTML completa com informações do servidor, URLs de rede disponíveis e exemplos de uso da API.</p>
+                    <div class="response-example">
+                        <strong>Resposta:</strong> Página HTML com dashboard completo
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/streaming</span>
+                    <span>Página de streaming para Roku</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Página HTML otimizada para dispositivos Roku com player de vídeo HTML5 e controles nativos.</p>
+                    <div class="response-example">
+                        <strong>Resposta:</strong> Página HTML com player de vídeo
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/health</span>
+                    <span>Status e informações do servidor</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Retorna informações detalhadas sobre o status do servidor, interfaces de rede e endpoints disponíveis.</p>
+                    <div class="code-block">
+{
+  "status": "OK",
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "service": "Roku Streaming Server",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 3111,
+    "environment": "production"
+  },
+  "network": {
+    "interfaces": [...],
+    "accessUrls": [...]
+  },
+  "endpoints": {
+    "streaming": "/streaming",
+    "health": "/health",
+    "videos": "/api/videos",
+    ...
+  }
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="videos">
+            <h2>🎬 Gerenciamento de Vídeos</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/api/videos</span>
+                    <span>Listar todos os vídeos</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Retorna a lista completa de vídeos disponíveis com metadados.</p>
+                    
+                    <h4>Resposta de Sucesso:</h4>
+                    <div class="code-block">
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "Big Buck Bunny",
+      "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "duration": "10:34",
+      "description": "Big Buck Bunny tells the story of a giant rabbit...",
+      "genre": "Animation",
+      "year": 2008
+    }
+  ],
+  "total": 5,
+  "apiVersion": "1.0",
+  "lastUpdated": "2024-01-15T10:30:00.000Z"
+}
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/api/videos/:id</span>
+                    <span>Obter vídeo específico</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Retorna informações detalhadas de um vídeo específico.</p>
+                    
+                    <h4>Parâmetros:</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parâmetro</th>
+                                <th>Tipo</th>
+                                <th>Obrigatório</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>integer</td>
+                                <td class="required">Sim</td>
+                                <td>ID único do vídeo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Exemplo de Requisição:</h4>
+                    <div class="code-block">GET /api/videos/1</div>
+
+                    <h4>Resposta de Sucesso:</h4>
+                    <div class="code-block">
+{
+  "id": 1,
+  "title": "Big Buck Bunny",
+  "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+  "duration": "10:34",
+  "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself.",
+  "genre": "Animation",
+  "year": 2008
+}
+                    </div>
+
+                    <h4>Resposta de Erro (404):</h4>
+                    <div class="error-example">
+                        <div class="code-block">
+{
+  "error": "Video não encontrado",
+  "videoId": 999,
+  "availableIds": [1, 2, 3, 4, 5]
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="network">
+            <h2>🌐 Informações de Rede</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span>/network-info</span>
+                    <span>Informações detalhadas de rede</span>
+                </div>
+                <div class="endpoint-body">
+                    <p>Retorna informações detalhadas sobre as interfaces de rede do servidor e URLs de configuração para Roku.</p>
+                    <div class="code-block">
+{
+  "hostname": "servidor-roku",
+  "platform": "linux",
+  "architecture": "x64",
+  "interfaces": [
+    {
+      "name": "eth0",
+      "address": "192.168.1.100",
+      "netmask": "255.255.255.0",
+      "mac": "00:11:22:33:44:55"
+    }
+  ],
+  "streamingUrls": [
+    {
+      "interface": "eth0",
+      "url": "http://192.168.1.100:3111/streaming",
+      "network": "192.168.1.100/255.255.255.0"
+    }
+  ],
+  "rokuConfiguration": {
+    "primaryUrl": "http://192.168.1.100:3111/streaming",
+    "alternativeUrls": []
+  }
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples">
+            <h2>💻 Exemplos de Código</h2>
+
+            <div class="language-tabs">
+                <button class="language-tab active" onclick="showExample('javascript')">JavaScript</button>
+                <button class="language-tab" onclick="showExample('nodejs')">Node.js</button>
+                <button class="language-tab" onclick="showExample('python')">Python</button>
+                <button class="language-tab" onclick="showExample('curl')">cURL</button>
+            </div>
+
+            <div id="javascript" class="code-example active">
+                <h4>JavaScript (Fetch API)</h4>
+                <div class="code-block">
+// Buscar todos os vídeos
+async function getVideos() {
+    try {
+        const response = await fetch('http://localhost:3111/api/videos');
+        const data = await response.json();
+        console.log('Vídeos:', data.videos);
+        return data.videos;
+    } catch (error) {
+        console.error('Erro ao buscar vídeos:', error);
+    }
+}
+
+// Buscar vídeo específico
+async function getVideo(id) {
+    try {
+        const response = await fetch(`http://localhost:3111/api/videos/${id}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const video = await response.json();
+        console.log('Vídeo:', video);
+        return video;
+    } catch (error) {
+        console.error('Erro ao buscar vídeo:', error);
+    }
+}
+
+// Verificar status do servidor
+async function checkHealth() {
+    try {
+        const response = await fetch('http://localhost:3111/health');
+        const health = await response.json();
+        console.log('Status:', health.status);
+        return health;
+    } catch (error) {
+        console.error('Erro ao verificar status:', error);
+    }
+}
+
+// Usar as funções
+getVideos();
+getVideo(1);
+checkHealth();
+                </div>
+            </div>
+
+            <div id="nodejs" class="code-example">
+                <h4>Node.js (Axios)</h4>
+                <div class="code-block">
+const axios = require('axios');
+
+const API_BASE_URL = 'http://localhost:3111';
+
+// Classe para interagir com a API
+class RokuStreamingAPI {
+    constructor(baseUrl = API_BASE_URL) {
+        this.baseUrl = baseUrl;
+        this.client = axios.create({
+            baseURL: baseUrl,
+            timeout: 5000,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    // Buscar todos os vídeos
+    async getVideos() {
+        try {
+            const response = await this.client.get('/api/videos');
+            return response.data.videos;
+        } catch (error) {
+            console.error('Erro ao buscar vídeos:', error.message);
+            throw error;
+        }
+    }
+
+    // Buscar vídeo específico
+    async getVideo(id) {
+        try {
+            const response = await this.client.get(`/api/videos/${id}`);
+            return response.data;
+        } catch (error) {
+            if (error.response?.status === 404) {
+                console.error(`Vídeo ${id} não encontrado`);
+            }
+            throw error;
+        }
+    }
+
+    // Verificar status do servidor
+    async checkHealth() {
+        try {
+            const response = await this.client.get('/health');
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao verificar status:', error.message);
+            throw error;
+        }
+    }
+
+    // Obter informações de rede
+    async getNetworkInfo() {
+        try {
+            const response = await this.client.get('/network-info');
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao obter info de rede:', error.message);
+            throw error;
+        }
+    }
+}
+
+// Exemplo de uso
+async function main() {
+    const api = new RokuStreamingAPI();
+
+    try {
+        // Verificar status
+        const health = await api.checkHealth();
+        console.log('Servidor status:', health.status);
+
+        // Buscar vídeos
+        const videos = await api.getVideos();
+        console.log(`Encontrados ${videos.length} vídeos`);
+
+        // Buscar primeiro vídeo
+        if (videos.length > 0) {
+            const firstVideo = await api.getVideo(videos[0].id);
+            console.log('Primeiro vídeo:', firstVideo.title);
+        }
+
+        // Informações de rede
+        const networkInfo = await api.getNetworkInfo();
+        console.log('URL principal:', networkInfo.rokuConfiguration.primaryUrl);
+
+    } catch (error) {
+        console.error('Erro na aplicação:', error.message);
+    }
+}
+
+main();
+                </div>
+            </div>
+
+            <div id="python" class="code-example">
+                <h4>Python (Requests)</h4>
+                <div class="code-block">
+import requests
+import json
+from typing import List, Dict, Optional
+
+class RokuStreamingAPI:
+    def __init__(self, base_url: str = "http://localhost:3111"):
+        self.base_url = base_url
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Content-Type': 'application/json'
+        })
+        self.session.timeout = 5
+
+    def get_videos(self) -> List[Dict]:
+        """Buscar todos os vídeos disponíveis"""
+        try:
+            response = self.session.get(f"{self.base_url}/api/videos")
+            response.raise_for_status()
+            return response.json()['videos']
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao buscar vídeos: {e}")
+            raise
+
+    def get_video(self, video_id: int) -> Optional[Dict]:
+        """Buscar vídeo específico por ID"""
+        try:
+            response = self.session.get(f"{self.base_url}/api/videos/{video_id}")
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 404:
+                print(f"Vídeo {video_id} não encontrado")
+                return None
+            raise
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao buscar vídeo: {e}")
+            raise
+
+    def check_health(self) -> Dict:
+        """Verificar status do servidor"""
+        try:
+            response = self.session.get(f"{self.base_url}/health")
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao verificar status: {e}")
+            raise
+
+    def get_network_info(self) -> Dict:
+        """Obter informações de rede"""
+        try:
+            response = self.session.get(f"{self.base_url}/network-info")
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao obter info de rede: {e}")
+            raise
+
+# Exemplo de uso
+def main():
+    api = RokuStreamingAPI()
+
+    try:
+        # Verificar status do servidor
+        health = api.check_health()
+        print(f"Status do servidor: {health['status']}")
+
+        # Buscar todos os vídeos
+        videos = api.get_videos()
+        print(f"Encontrados {len(videos)} vídeos")
+
+        # Mostrar informações dos vídeos
+        for video in videos:
+            print(f"- {video['title']} ({video['year']}) - {video['duration']}")
+
+        # Buscar vídeo específico
+        if videos:
+            first_video = api.get_video(videos[0]['id'])
+            if first_video:
+                print(f"\nDetalhes do primeiro vídeo:")
+                print(f"Título: {first_video['title']}")
+                print(f"Descrição: {first_video['description']}")
+                print(f"URL: {first_video['url']}")
+
+        # Informações de rede
+        network_info = api.get_network_info()
+        print(f"\nURL principal para Roku: {network_info['rokuConfiguration']['primaryUrl']}")
+
+    except Exception as e:
+        print(f"Erro na aplicação: {e}")
+
+if __name__ == "__main__":
+    main()
+                </div>
+            </div>
+
+            <div id="curl" class="code-example">
+                <h4>cURL</h4>
+                <div class="code-block">
+# Verificar status do servidor
+curl -X GET "http://localhost:3111/health" \
+     -H "Content-Type: application/json"
+
+# Buscar todos os vídeos
+curl -X GET "http://localhost:3111/api/videos" \
+     -H "Content-Type: application/json"
+
+# Buscar vídeo específico
+curl -X GET "http://localhost:3111/api/videos/1" \
+     -H "Content-Type: application/json"
+
+# Obter informações de rede
+curl -X GET "http://localhost:3111/network-info" \
+     -H "Content-Type: application/json"
+
+# Testar página de streaming
+curl -X GET "http://localhost:3111/streaming"
+
+# Exemplo com tratamento de erro
+curl -X GET "http://localhost:3111/api/videos/999" \
+     -H "Content-Type: application/json" \
+     -w "Status Code: %{http_code}\n"
+
+# Salvar resposta em arquivo
+curl -X GET "http://localhost:3111/api/videos" \
+     -H "Content-Type: application/json" \
+     -o videos.json
+
+# Verificar apenas headers
+curl -I "http://localhost:3111/health"
+
+# Com timeout
+curl -X GET "http://localhost:3111/health" \
+     --max-time 10 \
+     -H "Content-Type: application/json"
+                </div>
+            </div>
+        </section>
+
+        <section id="errors">
+            <h2>⚠️ Códigos de Erro</h2>
+            
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Status</th>
+                        <th>Descrição</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>200</td>
+                        <td>OK</td>
+                        <td>Requisição bem-sucedida</td>
+                        <td>Dados retornados com sucesso</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <td>Not Found</td>
+                        <td>Recurso não encontrado</td>
+                        <td>Vídeo com ID inexistente</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>Internal Server Error</td>
+                        <td>Erro interno do servidor</td>
+                        <td>Falha na aplicação</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Formato de Resposta de Erro:</h4>
+            <div class="error-example">
+                <div class="code-block">
+{
+  "error": "Descrição do erro",
+  "message": "Detalhes adicionais",
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "endpoint": "/api/videos/999"
+}
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+            <p><strong>📚 Documentação da API v1.0</strong></p>
+            <p>Para mais informações, acesse a <a href="/">página inicial</a> ou entre em <a href="/contact">contato</a></p>
+            <div style="margin-top: 20px;">
+                <a href="/" class="back-link">🏠 Página Inicial</a>
+                <a href="/support" class="back-link">🛠️ Suporte</a>
+                <a href="/about" class="back-link">ℹ️ Sobre</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showExample(language) {
+            // Hide all examples
+            const examples = document.querySelectorAll('.code-example');
+            examples.forEach(example => example.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.language-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected example
+            document.getElementById(language).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Roku Streaming Server</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background: #0056b3;
+            color: white;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .stats {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .tech-stack {
+            background: #f0f8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tech-tag {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Voltar ao Início</a>
+        
+        <div class="header">
+            <h1>🚀 Sobre o Roku Streaming Server</h1>
+            <p>Plataforma completa de streaming para dispositivos Roku</p>
+        </div>
+
+        <section>
+            <h2>📖 O que é o Roku Streaming Server?</h2>
+            <p>O Roku Streaming Server é uma solução completa e robusta para desenvolvimento de aplicações de streaming para a plataforma Roku. Desenvolvido com foco na simplicidade, performance e escalabilidade, oferece uma API RESTful completa e interface web otimizada para Smart TVs.</p>
+        </section>
+
+        <div class="stats">
+            <h3>📊 Estatísticas do Projeto</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div>Open Source</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div>Vídeos Demo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div>Endpoints API</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Multi</div>
+                    <div>Plataforma</div>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2>✨ Principais Características</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Streaming HTML5</h3>
+                    <p>Player de vídeo otimizado para Smart TVs com controles nativos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>API RESTful</h3>
+                    <p>API completa com endpoints para gerenciamento de vídeos e metadados</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Multi-Dispositivo</h3>
+                    <p>Compatível com Roku, Smart TVs, navegadores e dispositivos móveis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Deploy Fácil</h3>
+                    <p>Configuração automática para Render, Heroku, Railway e outros</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguro</h3>
+                    <p>HTTPS, CORS configurado, headers de segurança e error handling</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Monitoramento</h3>
+                    <p>Health checks, logs detalhados e informações de rede</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="tech-stack">
+            <h3>🛠️ Stack Tecnológica</h3>
+            <p>Construído com as melhores tecnologias para garantir performance e confiabilidade:</p>
+            <div class="tech-list">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag">HTML5 Video</span>
+                <span class="tech-tag">JavaScript ES6+</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">REST API</span>
+                <span class="tech-tag">CORS</span>
+                <span class="tech-tag">JSON</span>
+                <span class="tech-tag">Roku BrightScript</span>
+                <span class="tech-tag">Responsive Design</span>
+            </div>
+        </div>
+
+        <section>
+            <h2>🎯 Casos de Uso</h2>
+            <ul>
+                <li><strong>Canais Roku:</strong> Desenvolvimento de canais personalizados para a Roku Store</li>
+                <li><strong>Streaming Corporativo:</strong> Soluções de vídeo para empresas e organizações</li>
+                <li><strong>Educação:</strong> Plataformas de ensino à distância e treinamentos</li>
+                <li><strong>Entretenimento:</strong> Serviços de streaming de conteúdo sob demanda</li>
+                <li><strong>Eventos:</strong> Transmissão de eventos ao vivo e gravados</li>
+                <li><strong>Demonstrações:</strong> Showcases de produtos e serviços</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🌟 Diferenciais</h2>
+            <ul>
+                <li>✅ <strong>Plug & Play:</strong> Funciona imediatamente após instalação</li>
+                <li>✅ <strong>Multi-Rede:</strong> Detecta automaticamente todas as interfaces de rede</li>
+                <li>✅ <strong>Documentação Completa:</strong> API docs, exemplos e guias detalhados</li>
+                <li>✅ <strong>Páginas Legais:</strong> Política de privacidade, termos de uso e suporte</li>
+                <li>✅ <strong>Pronto para Produção:</strong> Configurações otimizadas para deploy</li>
+                <li>✅ <strong>Código Limpo:</strong> Arquitetura modular e bem documentada</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📈 Roadmap</h2>
+            <ul>
+                <li>🔄 <strong>Em Desenvolvimento:</strong> Sistema de autenticação</li>
+                <li>📋 <strong>Planejado:</strong> Dashboard administrativo</li>
+                <li>🎨 <strong>Futuro:</strong> Temas personalizáveis</li>
+                <li>📊 <strong>Futuro:</strong> Analytics e métricas</li>
+                <li>🔌 <strong>Futuro:</strong> Plugins e extensões</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>👥 Contribuição</h2>
+            <p>Este é um projeto open source e contribuições são bem-vindas! Se você encontrou um bug, tem uma sugestão de melhoria ou quer contribuir com código, fique à vontade para:</p>
+            <ul>
+                <li>Reportar issues no GitHub</li>
+                <li>Enviar pull requests</li>
+                <li>Sugerir novas funcionalidades</li>
+                <li>Melhorar a documentação</li>
+                <li>Compartilhar casos de uso</li>
+            </ul>
+        </section>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+            <p><strong>🎯 Roku Streaming Server v1.0</strong></p>
+            <p>Desenvolvido com ❤️ para a comunidade de desenvolvedores Roku</p>
+            <div style="margin-top: 20px;">
+                <a href="/" class="back-link">🏠 Página Inicial</a>
+                <a href="/api-docs" class="back-link">📚 Documentação</a>
+                <a href="/support" class="back-link">🛠️ Suporte</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

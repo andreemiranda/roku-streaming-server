@@ -1,21 +1,110 @@
+# Configuração de Deploy para Render.com
+# Este arquivo configura o deploy automático do servidor Roku Streaming
+
 services:
+  # Serviço Web Principal
   - type: web
     name: roku-streaming-server
     env: node
-    plan: free
+    plan: free  # Plano gratuito do Render
     buildCommand: npm install
     startCommand: npm start
-    healthCheckPath: /health
+    
+    # Configurações do ambiente
     envVars:
       - key: NODE_ENV
         value: production
+      - key: HOST
+        value: 0.0.0.0
       - key: PORT
         fromService:
           type: web
           name: roku-streaming-server
           property: port
+    
+    # Configurações de saúde e monitoramento
+    healthCheckPath: /health
+    
+    # Configurações de rede
     domains:
-      - roku-streaming-server.onrender.com
+      # Render irá gerar automaticamente um domínio
+      # Exemplo: roku-streaming-server-abc123.onrender.com
+    
+    # Configurações de build
+    buildFilter:
+      paths:
+        - server/**
+      ignoredPaths:
+        - roku-app/**
+        - README.md
+        - .gitignore
+    
+    # Configurações de runtime
+    runtime: node18
+    
+    # Configurações de recursos
+    disk:
+      name: data
+      mountPath: /tmp
+      sizeGB: 1
+    
+    # Configurações de auto-deploy
     autoDeploy: true
+    
+    # Branch para deploy automático
     branch: main
-    rootDir: ./server
+    
+    # Configurações de build avançadas
+    buildCommand: |
+      cd server
+      npm ci --only=production
+      npm run build || echo "No build script found"
+    
+    # Comando de inicialização
+    startCommand: |
+      cd server
+      npm start
+    
+    # Variáveis de ambiente específicas do Render
+    envVars:
+      - key: RENDER
+        value: true
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        fromService:
+          type: web
+          name: roku-streaming-server
+          property: port
+      - key: RENDER_SERVICE_NAME
+        fromService:
+          type: web
+          name: roku-streaming-server
+          property: serviceName
+      - key: RENDER_SERVICE_URL
+        fromService:
+          type: web
+          name: roku-streaming-server
+          property: serviceURL
+
+# Configurações globais
+region: oregon  # Região do servidor (oregon, frankfurt, singapore)
+
+# Configurações de notificação (opcional)
+notifications:
+  - type: email
+    emails:
+      - seu-email@exemplo.com
+    events:
+      - deploy-succeeded
+      - deploy-failed
+      - service-suspended
+
+# Configurações de banco de dados (se necessário no futuro)
+# databases:
+#   - name: roku-streaming-db
+#     databaseName: streaming
+#     user: streaming_user
+#     plan: free
