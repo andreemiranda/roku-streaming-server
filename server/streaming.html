@@ -1079,7 +1079,7 @@
             isTouchDevice: ('ontouchstart' in window) || (navigator.maxTouchPoints > 0)
         };
 
-        // Configuração dos canais - Incluindo canais de áudio
+        // Configuração dos canais - Incluindo canais de áudio e videos do youtube
         const channels = [
             { number: 1, name: "TV Cultura", url: "https://5b33b873179a2.streamlock.net:1443/live/livestream/playlist.m3u8", type: "video" },
             { number: 2, name: "TV Fundação", url: "https://cdn-fundacao-2110.ciclano.io:1443/fundacao-2110/fundacao-2110/chunklist_w175723033.m3u8", type: "video" },
@@ -1156,17 +1156,21 @@
 			{ number: 73, name: "TV Aparecida 2", url: "https://www.youtube.com/watch?v=4CAmwaFJo6k", type: "youtube" },
 			{ number: 74, name: "SCC SBT", url: "https://www.youtube.com/watch?v=JdGEduIu3MM", type: "youtube" },
 			{ number: 75, name: "TV Escola", url: "https://cdn-fundacao-2110.ciclano.io:1443/fundacao-2110/fundacao-2110/chunklist_w175723033.m3u8", type: "video" },
-			
-            // Canais de áudio
             { number: 76, name: "Rádio Olivença FM", url: "https://server12.srvsh.com.br:8074/stream", type: "audio" },
             { number: 77, name: "Rádio Vale FM", url: "https://s37.maxcast.com.br:8058/live", type: "audio" },
             { number: 78, name: "Rádio Jovem Palmas", url: "http://sd.dnip.com.br:10422/stream", type: "audio" },
 			{ number: 79, name: "Rádio HCJB", url: "https://streamingecuador.net:8287/hcjb", type: "audio" },
             { number: 80, name: "Rádio Ativa FM", url: "http://servidor33.brlogic.com:8224/live", type: "audio" },
             { number: 81, name: "Rádio Paraiso FM", url: "https://sonicpanel.oficialserver.com/8112/stream", type: "audio" },
-			{ number: 82, name: "Rádio Paraíso do Tocantins", url: "https://streaming.radios.com.br/live/69111", type: "audio" },
-			{ number: 83, name: "CBN Tocantins", url: "https://cbntocantins-streaming.example.com/live.m3u8", type: "audio" },
-			{ number: 84, name: "Rádio Alcance", url: "https://streaming.radios.com.br/live/35382", type: "audio" }
+			{ number: 82, name: "Rádio Executiva FM", url: "https://live.ojc.com.br/e9cd_6/myStream.m3u8", type: "video" },
+			{ number: 83, name: "CBN Tocantins", url: "https://live.ojc.com.br/e9cd_6/myStream.m3u8", type: "video" },
+			{ number: 84, name: "Rádio Tocantins PN", url: "https://sv1.audiostream.com.br/radio/8040/stream", type: "audio" },
+			{ number: 85, name: "Rádio Itatiaia", url: "https://8903.brasilstream.com.br/stream", type: "audio" },
+			{ number: 86, name: "Rádio Unitins FM", url: "https://live.unitins.br", type: "audio" },
+			{ number: 87, name: "Rádio Porto", url: "https://sonicpanel.oficialserver.com:7120/stream", type: "audio" },
+			{ number: 88, name: "Rádio Transamérica", url: "https://playerservices.streamtheworld.com/api/livestream-redirect/RT_SPAAC.aac", type: "audio" },
+			{ number: 89, name: "TV Nova PE", url: "https://acesso.ecast.site:3675/live/novatvlive.m3u8", type: "video" },
+			{ number: 90, name: "TV Canção Nova", url: "https://www.youtube.com/watch?v=3vwVxDEt_OE", type: "youtube" }
         ];
 
         let currentChannelIndex = 0;
