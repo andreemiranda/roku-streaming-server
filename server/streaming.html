@@ -1065,7 +1065,7 @@
         
         // YouTube API Key - Substitua pela sua chave da API do YouTube Data v3
         // Obtenha gratuitamente em: https://developers.google.com/youtube/v3/getting-started
-        const YOUTUBE_API_KEY = 'SUA_CHAVE_API_AQUI'; // Substitua pela sua chave
+        const YOUTUBE_API_KEY = 'AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc'; // Substitua pela sua chave
         
         // Detecção de dispositivos e plataformas
         const deviceInfo = {
@@ -1546,7 +1546,7 @@
 
         // Busca vídeos de um canal do YouTube
         async function fetchChannelVideos(channelId) {
-            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'SUA_CHAVE_API_AQUI') {
+            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc') {
                 console.log('API Key do YouTube não configurada, usando apenas vídeo original');
                 return [];
             }
@@ -1579,7 +1579,7 @@
 
         // Obtém o ID do canal a partir do ID do vídeo
         async function getChannelIdFromVideo(videoId) {
-            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'SUA_CHAVE_API_AQUI') {
+            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc') {
                 return null;
             }
             
@@ -1686,7 +1686,7 @@
 
         // Monitora lives periodicamente
         function startLiveMonitoring(channel) {
-            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'SUA_CHAVE_API_AQUI') {
+            if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc') {
                 return;
             }
             
@@ -1762,7 +1762,7 @@
                 }
                 
                 // Verifica se há live ativo (se API key estiver configurada)
-                if (YOUTUBE_API_KEY && YOUTUBE_API_KEY !== 'SUA_CHAVE_API_AQUI') {
+                if (YOUTUBE_API_KEY && YOUTUBE_API_KEY !== 'AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc') {
                     const liveResult = await checkYouTubeLive(videoId, channel);
                     if (liveResult.isLive) {
                         console.log('Live detectada, transmitindo ao vivo:', liveResult.url);
@@ -2709,7 +2709,7 @@
     2. Crie um novo projeto ou selecione um existente
     3. Ative a "YouTube Data API v3"
     4. Crie uma chave de API (API Key)
-    5. Substitua "SUA_CHAVE_API_AQUI" na linha 169 pela sua chave
+    5. Substitua "AIzaSyCNL4lsOgLRiRj1jc_5c0OVTK_E85ChVMc" na linha 169 pela sua chave
     
     FUNCIONALIDADES COM API CONFIGURADA:
     - Quando um canal YouTube estiver fazendo live, automaticamente 
